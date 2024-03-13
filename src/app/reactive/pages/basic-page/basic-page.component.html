@@ -1,0 +1,93 @@
+<h2>Reactive: Basic</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+
+    <form autocomplete="off">
+
+      <!-- Product field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Product</label>
+        <div class="col-sm-9">
+
+          <input type="text"
+                 class="form-control"
+                 placeholder="Product name">
+
+          <span class="form-text text-danger">
+                        <!-- Min length 3 -->
+                        error message
+                    </span>
+        </div>
+      </div>
+
+      <!-- Price field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-9">
+          <input type="number"
+                 class="form-control"
+                 placeholder="Product price">
+          <span class="form-text text-danger">
+                        The price should be greater than 0
+                    </span>
+        </div>
+      </div>
+
+      <!-- Stock field -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stock</label>
+        <div class="col-sm-9">
+          <input type="number"
+                 class="form-control"
+                 placeholder="Product stock">
+
+          <span class="form-text text-danger">
+                         Stock should be greater than 0
+                    </span>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <button type="submit"
+                  class="btn btn-primary float-end">
+            Save
+          </button>
+        </div>
+      </div>
+
+
+
+    </form>
+
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col">
+
+    <span>Valid</span>
+    <pre>{{ 'object' | json }}</pre>
+
+    <span>Pristine</span>
+    <pre>{{ 'object' | json }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ 'object' | json }}</pre>
+
+    <span>Value</span>
+    <pre>{{ 'object' | json }}</pre>
+
+    <span>Precio</span>
+    <pre>{{ 'object' | json }}</pre>
+
+    <span>Producto</span>
+    <pre>{{ 'object' | json }}</pre>
+  </div>
+</div>
