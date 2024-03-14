@@ -3,8 +3,7 @@
 
 <div class="row">
   <div class="col">
-
-    <form autocomplete="off">
+    <form [formGroup]='form' (ngSubmit)='onSubmit()' autocomplete="off">
 
       <!-- Product field -->
       <div class="mb-3 row">
@@ -13,12 +12,13 @@
 
           <input type="text"
                  class="form-control"
+                 formControlName="name"
                  placeholder="Product name">
 
-          <span class="form-text text-danger">
-                        <!-- Min length 3 -->
-                        error message
-                    </span>
+          <span *ngIf='isInvalidField("name")'
+                class="form-text text-danger">
+            {{ getFieldError("name") }}
+          </span>
         </div>
       </div>
 
@@ -28,10 +28,11 @@
         <div class="col-sm-9">
           <input type="number"
                  class="form-control"
+                 formControlName="price"
                  placeholder="Product price">
-          <span class="form-text text-danger">
-                        The price should be greater than 0
-                    </span>
+          <span *ngIf='isInvalidField("price")' class="form-text text-danger">
+              {{ getFieldError("price") }}
+          </span>
         </div>
       </div>
 
@@ -41,14 +42,14 @@
         <div class="col-sm-9">
           <input type="number"
                  class="form-control"
+                 formControlName="stock"
                  placeholder="Product stock">
 
-          <span class="form-text text-danger">
-                         Stock should be greater than 0
-                    </span>
+          <span *ngIf='isInvalidField("stock")' class="form-text text-danger">
+              {{ getFieldError("stock") }}
+          </span>
         </div>
       </div>
-
 
       <div class="row">
         <div class="col">
@@ -59,35 +60,37 @@
         </div>
       </div>
 
-
-
     </form>
-
   </div>
 </div>
 
-
-
-
 <div class="row">
   <div class="col">
-
     <span>Valid</span>
-    <pre>{{ 'object' | json }}</pre>
+    <pre>{{ form.valid }}</pre>
 
     <span>Pristine</span>
-    <pre>{{ 'object' | json }}</pre>
+    <pre>{{ form.pristine }}</pre>
 
     <span>Touched</span>
-    <pre>{{ 'object' | json }}</pre>
+    <pre>{{ form.touched }}</pre>
 
     <span>Value</span>
-    <pre>{{ 'object' | json }}</pre>
+    <pre>{{ form.value | json }}</pre>
 
-    <span>Precio</span>
-    <pre>{{ 'object' | json }}</pre>
+    <span>Errors</span>
+    <pre>{{ form.errors | json }}</pre>
 
-    <span>Producto</span>
-    <pre>{{ 'object' | json }}</pre>
+    <span>Price</span>
+    <pre>{{ form.controls["price"].value }}</pre>
+
+    <span>Product</span>
+    <pre>{{ form.controls["name"].value }}</pre>
+
+    <span>Price - Errors</span>
+    <pre>{{ form.controls["price"].errors | json }}</pre>
+
+    <span>Product - Errors</span>
+    <pre>{{ form.controls["name"].errors | json }}</pre>
   </div>
 </div>
