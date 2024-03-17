@@ -1,19 +1,22 @@
 <h2>Reactive: Switches</h2>
 <hr>
 
-
-<form autocomplete="off">
-
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  autocomplete="off">
   <!-- Radio -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Gender</label>
-    <div class="col-sm-9">
 
+    <div class="col-sm-9">
       <div class="form-check">
         <input class="form-check-input"
                type="radio"
                value="M"
+               formControlName="gender"
                id="maleRadio">
+
         <label class="form-check-label" for="maleRadio">
           Male
         </label>
@@ -23,27 +26,28 @@
         <input class="form-check-input"
                type="radio"
                value="F"
+               formControlName="gender"
                id="femaleRadio">
+
         <label class="form-check-label" for="femaleRadio">
           Female
         </label>
       </div>
-
     </div>
   </div>
 
   <!-- Switches -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Notifications</label>
-    <div class="col-sm-9">
 
+    <div class="col-sm-9">
       <div class="form-check form-switch mt-2">
         <input class="form-check-input"
                type="checkbox"
+               formControlName="notifications"
                id="flexSwitchCheckChecked">
         <label class="form-check-label" for="flexSwitchCheckChecked">I want to receive notifications.</label>
       </div>
-
     </div>
   </div>
 
@@ -54,18 +58,18 @@
       <div class="form-check">
         <input class="form-check-input"
                type="checkbox"
+               formControlName="terms"
                id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Terms and conditions of use
         </label>
       </div>
-      <span class="form-text text-danger">
-                 You must accept the conditions of use
-              </span>
 
+      <span *ngIf='isInvalidField("terms")' class="form-text text-danger">
+        You must accept the conditions of use
+      </span>
     </div>
   </div>
-
 
   <!-- Submit button -->
   <div class="row">
@@ -76,23 +80,12 @@
       </button>
     </div>
   </div>
-
 </form>
 
 
 <h5>Form value</h5>
-<pre>{{ 'object' | json }}</pre>
-<br>
-
-<h5>Person</h5>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ form.value | json }}</pre>
 <br>
 
 <h5>Valid</h5>
-<pre>{{ 'object' | json }}</pre>
-
-<!-- <h5>Terms</h5> -->
-<!-- <pre>{{ myForm.controls?.terms?.errors | json }}</pre> -->
-
-<!-- <br>
-<pre>Conditions: </pre> -->
+<pre>{{ form.valid | json }}</pre>
