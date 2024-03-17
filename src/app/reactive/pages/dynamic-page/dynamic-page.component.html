@@ -1,17 +1,20 @@
 <h2>Reactive: <small> Dynamic </small></h2>
 <hr>
 
-<form autocomplete="off">
+<form autocomplete="off"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
 
   <!-- Name -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Name</label>
     <div class="col-sm-9">
       <input class="form-control"
+             formControlName="name"
              placeholder="Person name">
-      <span class="form-text text-danger">
-                   error message
-            </span>
+      <span *ngIf="isInvalidField('name')" class="form-text text-danger">
+        {{ getFieldError("name") }}
+      </span>
     </div>
   </div>
 
@@ -19,13 +22,12 @@
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Add</label>
     <div class="col-sm-9">
-
       <div class="input-group">
         <input class="form-control"
+               [formControl]="newFavGame"
                placeholder="Add fav">
-
-
         <button class="btn btn-outline-primary"
+                (click)='onAddFav()'
                 type="button">
           Add fav
         </button>
@@ -33,57 +35,49 @@
     </div>
   </div>
 
-
   <!-- Games list -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Favs</label>
-    <div class="col-sm-9">
-
-      <div class="mb-1">
-
+    <div class="col-sm-9" formArrayName="favoriteGames">
+      <div class="mb-1" *ngFor="let favControl of favoriteGamesControls.controls; let i= index">
         <div class="input-group">
-          <input class="form-control">
+          <input class="form-control"
+                 id="favControl-{{i}}"
+                 [formControlName]="i">
 
           <button class="btn btn-outline-danger"
+                  (click)='onDelete(i)'
                   type="button">
             Delete
           </button>
         </div>
-        <span class="form-text text-danger">
-                   This field is required
-                </span>
 
+        <span *ngIf="isInvalidFieldInArray(favoriteGamesControls, i)" class="form-text text-danger">
+          This field is required
+        </span>
       </div>
-
     </div>
   </div>
-
-
 
   <div class="row">
     <div class="col-sm-12">
       <button type="submit"
               class="btn btn-primary float-end"
       >
-        <!-- [disabled]="myForm.invalid" -->
         Save
       </button>
     </div>
   </div>
-
-
 </form>
 
-
-
 <span>Valid</span>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ form.valid | json }}</pre>
 <br>
 
 <span>Value</span>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ form.value | json }}</pre>
 <br>
 
 <span>Add Game</span>
-<pre>{{ 'object' | json }}</pre>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ newFavGame.valid | json }}</pre>
+<pre>{{ newFavGame.value | json }}</pre>
