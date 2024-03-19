@@ -3,8 +3,9 @@
 
 <div class="row">
   <div class="col">
-
-    <form autocomplete="off">
+    <form [formGroup]='form'
+          (ngSubmit)='onSubmit()'
+      autocomplete="off">
 
       <!-- Name -->
       <div class="row mb-3">
@@ -12,11 +13,12 @@
         <div class="col-sm-9">
           <input type="text"
                  class="form-control"
+                 formControlName="name"
                  placeholder="Username">
 
           <span class="form-text text-danger">
-                        The format should be name and surname
-                    </span>
+              The format should be name and surname
+          </span>
         </div>
       </div>
 
@@ -26,10 +28,11 @@
         <div class="col-sm-9">
           <input type="email"
                  class="form-control"
+                 formControlName="email"
                  placeholder="User email">
           <span class="form-text text-danger">
-                        Email error message
-                    </span>
+              Email error message
+          </span>
         </div>
       </div>
 
@@ -39,10 +42,11 @@
         <div class="col-sm-9">
           <input type="text"
                  class="form-control"
+                 formControlName="username"
                  placeholder="Nickname">
           <span class="form-text text-danger">
-                         The username can not be Tiku
-                    </span>
+               The username can not be Tiku
+          </span>
         </div>
       </div>
 
@@ -52,11 +56,12 @@
         <div class="col-sm-9">
           <input type="password"
                  class="form-control"
+                 formControlName="password"
                  placeholder="Password">
 
           <span class="form-text text-danger">
-                         The password length should be greater than 6 chars.
-                    </span>
+               The password length should be greater than 6 chars.
+          </span>
         </div>
       </div>
 
@@ -66,14 +71,14 @@
         <div class="col-sm-9">
           <input type="password"
                  class="form-control"
+                 formControlName="password2"
                  placeholder="Confirm password">
 
           <span class="form-text text-danger">
-                         Passwords should match.
-                    </span>
+            Passwords should match.
+          </span>
         </div>
       </div>
-
 
       <div class="row">
         <div class="col">
@@ -84,30 +89,31 @@
         </div>
       </div>
 
-
     </form>
   </div>
 </div>
 
 
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
+<h2>Form Valid: {{ form.valid }}</h2>
+<h2>Form Status: {{ form.status }}</h2>
+<h2>Form Pending: {{ form.pending }}</h2>
 <h2>Form errors</h2>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.errors | json }}</pre>
 
 <h5>Name</h5>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.controls.name.errors | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.controls.email.errors | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.controls.username.errors | json }}</pre>
 
+<h5>Password value</h5>
+<pre>{{ form.controls.password.value | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.controls.password.errors | json }}</pre>
 
 <h5>Confirm</h5>
-<pre>{{ 'form' | json }}</pre>
+<pre>{{ form.controls.password2.errors | json }}</pre>
