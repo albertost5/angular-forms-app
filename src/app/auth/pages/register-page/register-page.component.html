@@ -16,7 +16,7 @@
                  formControlName="name"
                  placeholder="Username">
 
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('name')" class="form-text text-danger">
               The format should be name and surname
           </span>
         </div>
@@ -30,7 +30,7 @@
                  class="form-control"
                  formControlName="email"
                  placeholder="User email">
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('email')" class="form-text text-danger">
               Email error message
           </span>
         </div>
@@ -44,7 +44,7 @@
                  class="form-control"
                  formControlName="username"
                  placeholder="Nickname">
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('username')" class="form-text text-danger">
                The username can not be Tiku
           </span>
         </div>
@@ -59,7 +59,7 @@
                  formControlName="password"
                  placeholder="Password">
 
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('password')" class="form-text text-danger">
                The password length should be greater than 6 chars.
           </span>
         </div>
@@ -74,7 +74,7 @@
                  formControlName="password2"
                  placeholder="Confirm password">
 
-          <span class="form-text text-danger">
+          <span *ngIf="isInvalidField('password2')" class="form-text text-danger">
             Passwords should match.
           </span>
         </div>
